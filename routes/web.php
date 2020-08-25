@@ -16,17 +16,33 @@ Route::get('/', function () {
   
 });
 
-// Route::post('/registrar', 'Auth\LoginUserController@RegistroCliente');
+//Export xls
+Route::get('stock/export/', 'StockTakingController@export');
+Route::get('sale/export/', 'SaleController@export');
 
-Route::post('login', 'Auth\LoginController@login') ->name('login');
+
 
 //Inicio(logueado)
-Route::get('dashboard','DashboardController@index')->name('dashboard');
+Route::post('login', 'Auth\LoginController@login') ->name('login');
 
-Route::post('showLogin', 'Auth\LoginController@ShowLogin') ->name('showLogin');
+Route::get('homeProduct','ProductController@index')->name('home');
+
+Route::get('/', 'Auth\LoginController@showLogin');
 
 Route::post('logout', 'Auth\LoginController@LogOut') ->name('logout');
 
+//Productos
 
+Route::resource('product', 'ProductController');
+ Route::get('product/changeStatus/{id}', 'ProductController@updateAvailability')->name('changeStatus');
 
+//Inventario
+Route::resource('stock', 'StockTakingController');
 
+//Ventas
+Route::resource('sale', 'SaleController');
+Route::get('sale/cancelSale/{id}', 'SaleController@updateAvailability')->name('cancelSale');
+Route::post('sale/fetchM', 'SaleController@fetchMecanic')->name('sale.fetchM');
+Route::post('sale/fetchE', 'SaleController@fetchElectric')->name('sale.fetchE');
+Route::post('sale/fetchI', 'SaleController@fetchIlumination')->name('sale.fetchI');
+Route::get('sale/changeStatus/{id}', 'SaleController@updateStatus')->name('saleChangeStatus');

@@ -4,12 +4,14 @@ namespace App\Http\Controllers\Auth;
 
 use App\Http\Controllers\Controller;
 use App\abrhilSoft;
+use App\Product;
 use Auth;
+
 
 class LoginController extends Controller
 {
 
-    public function _construct(){
+    public function __construct(){
         $this ->middleware('guest', ['only' => 'showLogin']);
     }
 
@@ -19,24 +21,20 @@ class LoginController extends Controller
             'email' => 'email',
             'password' => 'min:3'
         ]);
-
-        //return $credential;
-
+ 
         if(Auth::attempt($credential)){
-            ///return 'Tu sesión ha retornado correctamente';
-            return redirect()->route('dashboard');
+            return redirect()->route('home');
         }
-    //    return back()->withErrors(['sesion' => 'Estas credenciales no coinciden']);
-    return back()
+        return back()
                 ->withErrors(['sesion' =>trans('auth.failed')])
                 ->withInput(request(['email']));
 
 
     }
 
-    public function ShowLogin()
+    public function showLogin()
     {
-        return view('auth.login');
+        return view('Auth.Login');
 
     }
    public function LogOut(){

@@ -1,0 +1,26 @@
+@import 'microtip/microtip';
+body {
+    background-image: url(office.png);
+}
+
+#close {
+    float: right;
+}
+
+.create {
+    color: #f3fcff;
+}
+
+.titleheader {
+    color: #f3fcff;
+}
+
+#ui {
+    background-color: #333;
+    padding: 30px;
+}
+
+.break:before {
+    display: block;
+    content: “ “;
+}

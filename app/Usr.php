@@ -8,9 +8,6 @@ use Illuminate\Database\Eloquent\Model;
 
 class Usr extends Model
 {
-    // use Authenticable;
-
     public  $table = "users"; 
     public $fillable = ['name','email','password'];
-    //public $timestamps = false;
 }
